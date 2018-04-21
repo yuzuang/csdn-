@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/swiper-3.4.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../utf8-php/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../utf8-php/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="../utf8-php/lang/zh-cn/zh-cn.js"></script>
+	<title>写博客</title>
+</head>
+	<style>
+		a {
+			text-decoration: none;
+		}
+		ul,li {
+			list-style: none;
+		}
+		.clearfix::after {
+			content: "";
+			clear : both;
+			height: 0;
+            
+			display: block;
+		}
+		.header{
+			background-color:#fff;
+		}
+		.header-a{
+			padding: 0rem;
+		    width: 1200px;
+		    max-width: none;
+		    height: 72px;
+		    margin-left: 72px;
+		}
+		.header-b a{
+			float: left;
+		}
+		.header-b .w-blog{
+		    font-weight: 400;
+		    border: 1px solid #C92027;
+		    width: 94px;
+		    height: 38px;
+		    margin-top: 16px;
+			margin-left: 900px;
+		}
+		.main{
+			margin-top: 1.5rem;
+		    margin-bottom: 100px;
+		    border: 1px solid #e9e9e9;
+		    box-shadow: -1px -1px 4px #e9e9e9;
+		    padding-left: 0;
+		    padding-right: 0;
+		    min-width: 1200px;
+		}
+		.row{
+			padding: 0;
+			margin-left: 0px;
+			margin-right: 0;
+		}
+		.row-col{
+			min-height: 560px;
+		    padding-right: 0px;
+		    padding-left: 0px;
+		    border-right: 1px solid #e9e9e9;
+		    background: #fff;
+		    max-width: 180px;
+		}
+		.list-group-title {
+		    padding: 0.75rem 1.5rem;
+		    color: #bbb;
+		    text-align: center;
+		}
+		.list-group{
+			text-align: center;
+			line-height: 45px;
+			height: 45px;
+		}
+		.list-group-item-a{		   
+		    color: #6c757d;
+		}
+		.list-group:hover{
+			background: #C92027;
+		}
+		.list-group a:hover{
+			color: #fff;
+		}
+		#txtTitle {
+		    display: block;
+		    width: 100%;
+		    height: 40px;
+		    line-height: 40px;
+		    box-sizing: border-box;
+		    padding: 0 16px;
+		    border: none;
+		    background-color: #efefef;
+		    color: #4f4f4f;
+		}
+	</style>
+<body style="color:#f4f4f4;">
+
+	<div class="header" >
+		<div class="header-a">
+			<a href=""style="float: left;">
+				<img src="../images/QQ截图20180415112941.png" style="width:72px;height:72px;" alt="">
+			</a>
+			<div class="header-b">
+				<a href=""style="line-height:72px; color:#888">创作中心</a>
+				<a href=""class="w-blog" style="color:#c92027;  text-align: center;line-height:40px">写博客</a>
+			</div>
+		</div>
+	</div>
+	<div id="main">
+		<div class="row">
+			<div class="row-col" style="float: left;width: 180px;">
+				<div class="list-group-item list-group-title">内容</div>
+				<div class="list-group">
+					<a href="" class="list-group-item-a">文章管理</a>
+				</div>
+				<div class="list-group">
+					<a href="" class="list-group-item-a">专栏管理</a>
+				</div>
+				<div class="list-group">
+					<a href="" class="list-group-item-a">评论管理</a>
+				</div>
+				<div class="list-group">
+					<a href="" class="list-group-item-a">个人分类管理</a>
+				<div class="list-group-item list-group-title">设置</div>
+				<div class="list-group">
+					<a href="" class="list-group-item-a">博客设置</a>
+				</div>
+				<div class="list-group">
+					<a href="" class="list-group-item-a">栏目管理</a>
+				</div>
+				</div>
+			</div>
+			<p><input v-model="title" type="text" name="title" style="    width: 800px;    height: 30px;  margin-left: 20px"></p>
+			<div style="    margin-left: 200px;">
+			    <script id="container" type="text/plain" style="width:1024px;height:500px;"></script>
+			</div>
+			<p style="margin-left: 200px;margin-bottom: 0px;margin-top: 0px;float: left;">
+			<select v-model="class_id">
+				<option value="5" selected="selected">日记</option>
+				<option value="4">it</option>
+			</select>
+			</p>
+			<button @click="issue" style="float: right;">发布</button>
+		</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+		 var editor = new Vue({
+    		el: "#main",
+    		data: {
+    			title: "",
+    			class_id: ""
+    		},
+    		mounted: function(){
+    			var ue = UE.getEditor('container');
+    		},
+    		methods: {
+    			getUeditorContent: function(){
+    				return UE.getEditor('container').getContent()
+    			},
+    			issue: function(){
+    				$.ajax({
+    					"url": "http://blog.com/api/blog/doAdd",
+    					"type": "post",
+    					"dataType": "json",
+    					"data": {
+    						"user_id": '36',
+    						"title": this.title,
+    						"content": this.getUeditorContent(),
+    						"classify_id": this.class_id,
+    					},
+    					success: function(res){
+    						if(res.error_code == 0){
+    							alert("发布成功即将跳转。。。。。。");
+    							window.location.href="./blog-list.html"
+    						}else {
+    							alert(res.message);
+    						}
+    					}
+    				})
+    			}
+    		}
+    	})
+		    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+
+</script>
+</body>
+</html>

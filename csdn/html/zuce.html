@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.2.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/swiper-3.4.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+	<title>CSDN注册</title>
+</head>
+	<style>
+		.input .txt_inpt {
+			width: 280px;
+		    height: 48px;
+		    background: #fafafa;
+		    border: 1px solid #ddd;
+		    box-shadow: inset 0 1px 3px 0 #ddd;
+		    border-radius: 4px;
+		    padding-left: 2%;
+		}
+		.next_btn {
+		    width: 290px;
+		    height: 48px;
+		    border: none;
+		    outline: none;
+		    background: #c92027;
+		    box-shadow: 0 2px 0 0 #ccc;
+		    border-radius: 4px;
+		    font-size: 18px;
+		    color: #fff;
+		}
+	</style>
+<body>
+	<div id="login">
+		<div class="name">
+			<h3>账号注册</h3>
+		</div>
+		<div class="input">
+			<input type="text" v-model="username" placeholder="请输入电话号" class="txt_inpt pc_inpt veri_err" name="code"><br>	<br>
+			<input type="text" v-model="password" placeholder="请输入密码" class="txt_inpt pc_inpt veri_err" name="code"><br>	<br>
+				<input type="text" v-model="name" placeholder="请输入用户名" class="txt_inpt pc_inpt veri_err" name="code"><br>	<br>
+			<input @click="login"value="注册" type="submit" class="next_btn next_step">
+		</div>
+	</div>
+	<script type="text/javascript">
+		var login = new Vue({
+			el: "#login",
+			data: {
+				username:"",
+				password:"",
+				name:"",
+			},
+			mounted:function(){},
+			methods:{
+				login:function(){
+					if(this.username == ""){
+						alert("用户名不能为空");
+						return false;
+					};
+					if(this.password == ""){
+                        alert("密码不能为空");
+                        return false;
+                    };
+                    if(this.name == ""){
+                        alert("用户名不能为空");
+                        return false;
+                    };
+					$.ajax({
+						url: "http://blog.com/api/user/doReg",
+						type: "post",
+						dataType: "json",
+						data: {
+							"phone":this.username,
+							"password":this.password,
+							"uname":this.name,
+						},
+						success:function(res){
+							if(res.error_code == 0){
+								alert("注册成功了");
+								window.location.href="./csdn-denglu.html"
+							}else {
+								alert(res.message);
+							}
+						}
+					})
+				}
+			}
+		})
+	</script>
+</html>
+
+

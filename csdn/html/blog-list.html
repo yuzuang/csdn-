@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+	<ul id="blogList">
+		<li v-for="item in list">
+			<span>{{ item.title }}</span>   <span>{{ item.date }}</span>   <span>{{ item.read_num }}</span>   <span>{{ item.classify_name }}</span><button @click="deleteBlog(item)">删除</button><button>编辑</button>
+		</li>
+	</ul>
+	<script type="text/javascript">
+		var blogList = new Vue({
+			el: "#blogList",
+			data: {
+				list:[]
+			},
+			mounted: function(){
+				this.getList();
+			},
+			methods: {
+				getList: function(){
+					// var user_id = localStorage.getItem("user_id")
+					var user_id = 36;
+					var that = this;
+					$.ajax({
+						url: " http://blog.com/api/blog/myBlog",
+						data: {
+							user_id: 36
+						},
+						type:"post",
+						dataType: "json",
+						success: function(res){
+							if(res.error_code == 0){
+								that.list = res.data.my_blog_lists
+							}else {
+								alert(res.message);
+							}
+						}
+					})
+				},
+				deleteBlog: function(item){
+					var that = this;
+					$.ajax({
+						url: "http://blog.com/api/blog/del",
+						data: {
+							user_id: 36,
+							blog_id: item.id
+						},
+						type:"post",
+						dataType: "json",
+						success: function(res){
+							if(res.error_code == 0){
+								alert("删除成功");
+								that.list.forEach(function(i,index){
+									if(i.user_id == item.id){
+										that.list.splice(index,1)
+									}
+								})
+							}else {
+								alert(res.message);
+							}
+						}
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

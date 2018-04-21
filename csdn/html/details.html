@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/swiper-3.4.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+    <title>详情页</title>
+    <link rel="stylesheet" href="../css/details.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <div id="content">
+        <div class="index_nav_box">
+            <div class="nav_box">
+                <div class="nav_left"></div>
+            </div>
+            <div class="index_name">
+                <span>CSND 博客</span>
+            </div>
+            <div class="index_search">
+                <i class="search_logo"></i>
+                <span>登录</span>
+            </div>
+        </div>
+
+        <div class="main clearfix">
+            <div class="top-user floatL clearfix">
+                <div class="top-user-info">
+                    <a href="" class="floatL">
+                        <img src="https://avatar.csdn.net/4/9/9/3_yinjun151.jpg" alt="" class="floatL">
+                        <span class="nick_name floatL">{{blog_info.author_name}}</span>
+                    </a>
+                    <div class="floatR">
+                        <a href="" class="guanzhu">关注</a>
+                    </div>
+                </div>
+            </div>
+            <div class="margin_sides">
+                <h1 class="article_title">
+                    {{blog_info.title}}
+                </h1>
+                <div class="article_info clearfix">
+                    <span class="type">转载</span>
+                    <span class="create_time">{{blog_info.date}}</span>
+                    <span class="read_num">阅读 {{blog_info.read_num}}</span>
+                </div>
+                <div class="article_content">
+                    <div class="markdown_views">
+                        {{blog_info.content}}
+                    </div>
+                    <div class="report_btn_box">
+                        <img src="../images/jinggao.png" alt="">
+                        <span>举报</span>
+                    </div>
+                </div>
+                <div class="user-info clearfix">
+                    <a href="">
+                        <div class="user_deta_info">
+                            <img src="https://avatar.csdn.net/4/9/9/3_yinjun151.jpg" alt="">
+                            <span class="nick_name">{{blog_info.author_name}}</span>
+                        </div>
+                        <div class="user_blog_data">
+                            <span>访问量</span>
+                            <span class="num">8万+</span>
+                            <span>原创</span>
+                            <span class="num">30</span>
+                            <span class="user_btn floatR">博主更多文章></span>
+                        </div>
+                    </a>
+                </div>  
+            </div>
+        </div>
+
+        <div class="recommend">
+            <div class="recommend_list ">
+                <ul>
+                    <li>
+                        <h4>低层次的聪明 比愚蠢更可怕「好文推荐」</h4>
+                        <div class="recommend_user_info">
+                            <span class="username">Mes8Y62b6ogV207</span>
+                            <span>409次阅读</span>
+                            <span class="time">2018-03-04 00:00:00</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="load_more_recommend">
+                <div class="load_more_recommend_btn">
+                    更多相关文章
+                </div>
+            </div>
+            <div class="a_d_2">
+                <div class="a_d_2_logo">
+                    <img src="https://timg01.bdimg.com/timg?pacompress=&imgtype=0&sec=1439619614&autorotate=1&di=06ede9a938eb2fbfb07a01a47d93ffe3&quality=90&size=b100_100&src=http%3A%2F%2Fbos.nj.bpc.baidu.com%2Fv1%2Fmediaspot%2F2e140cc69365ad5589c9b03eecbe84a1.jpeg" alt="">
+                </div>
+                <div class="_2jUmr0">
+                    CSDN
+                </div>
+                <div class="_1ag27m">
+                    CSDN精彩内容推荐
+                </div>
+                <div class="_1hqmP7">
+                    查看熊掌号
+                </div>
+            </div>
+        </div>
+
+        <div class="comment">
+            当前没有评论 
+            <a href=""> 点击发表评论</a>
+        </div>
+        <div id="operate">
+            <ul class="operate_ul">
+                <li>
+                    <a href="#"><i class="operate_1"></i>点赞</a>
+                </li>
+                <li>
+                    <a href="#"><i ></i>评论</a>
+                </li>
+                <li>
+                    <a href="#" @click="collect"><i ></i>收藏</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+    <script type="text/javascript" src="../js/csdn-details.js"></script>
+</html>

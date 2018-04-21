@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport"
+         content="initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+        <link rel="stylesheet" href="./css/swiper-3.4.2.min.css">
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="main">
+			<h2 class="collect">我的收藏</h2>
+			<ul class="feedList-mod">
+				<li v-for="item in list">
+					<h2 class="csdn-tracking-statistics"><a :href="'./CSDN_more.html?id='+item.id">{{item.title}}</a></h2>
+					<div class="info-tag">
+						<p class="tag">{{item.classify_name}}</p>
+						<p class="user-name">{{item.author_name}}</p>
+						<p class="read-count">{{item.read_num}}</p>
+						<p class="date">{{item.data}}</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	<script src="../js/swiper-3.4.2.min.js"></script>
+	<script src="../js/CSDN_collect.js"></script>
+	</body>
+</html>

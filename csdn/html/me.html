@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.14/dist/vue.js"></script>
+	<title>csdn-me</title>
+</head>
+	<style type="text/css">
+		html,body{
+		     font-size: 62.5%; 
+		 }
+		body{
+    	background-color: #eceef3;
+    	margin:0;
+    	}
+    	ul{
+    		list-style: none;
+    		padding:0 
+    	}
+    	a{
+    		text-decoration: none;
+    	}
+		
+		.my_top_wrap {
+		    background: #fff;
+		    width: 100%;
+		    padding-bottom: 20px;
+		}
+		.my_top_wrap img{
+			width: 60px;
+		    height: 60px;
+		    border-radius: 50%;
+		    padding: 25px;
+		    border: .025rem solid #eee;
+		    float: left;
+		}
+		.person_nick_name{
+			font-size: 15px;
+		    color: #4f4f4f;
+		    line-height: 60px;
+		    font-weight: 700;
+		    margin-top: 0px;
+    		margin-bottom: 0px;
+		}
+		.my_wap_main_wrap {
+		    background-color: #fff;
+		    margin: 4px 0px;
+		}
+		.my_wap_main_wrap .my_wap_main_list li {
+		    border-bottom: solid .025rem #ddd;
+		    box-shadow: 0 0 0 0 #ddd, inset 0 0 0 0 #ddd;
+		    padding: .3rem .6rem;
+		    height: 40px;
+		}
+		.my_wap_main_wrap .my_wap_main_list li a {
+		    width: 100%;
+		    font-size: 0;
+		}
+		.my_wap_main_wrap .my_wap_main_list li a span {
+		    font-size: 17px;
+		    color: #4f4f4f;
+		    line-height: 40px;
+		    margin-left: 25px;
+		}
+	</style>
+<body>
+	<div class="csdn_my_main">
+		<div class="my_top_wrap">
+			<img src="../images/QQ截图20180415112941.png" alt="">
+			<h3 class="person_nick_name">用户名</h3>
+			<div class="person_b">
+				<label class="person_lab">
+					<span style="font-size: 15px;color: #9e9e9e;">关注</span>
+					<em style="    color: #6ab3df;margin-left: 2px;font-size:15px;">0</em>
+					<span style="font-size: 15px;color: #9e9e9e;margin-left: 20px;">粉丝</span>
+					<em style="    color: #6ab3df;margin-left: 2px;font-size:15px;">0</em>
+				</label>
+			</div>
+		</div>
+		<div class="my_wap_main_wrap">
+			<ul class="my_wap_main_list">
+				<li>
+					<a href="#">
+						<span>我的博客</span>
+					</a>
+				</li>
+				<li>
+					<a href="./blog-list.html">
+						<span>我的收藏</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
